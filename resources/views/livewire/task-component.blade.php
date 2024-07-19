@@ -42,26 +42,30 @@
                         <div class="flex justify-center items-center">
                             @if (isset($task->pivot))
                                 <button
-                                    class="border border-primary py-2 px-6 mx-1 text-primary inline-block rounded hover:bg-primary hover:text-amber-600 hover:border-amber-500"
+                                    class="border border-primary py-2 px-6 mx-1 text-primary inline-flex rounded hover:bg-primary hover:text-amber-600 hover:border-amber-500"
                                     wire:click="unSharedTask({{ $task }})">
+                                    <i class="fa-solid fa-xmark mr-2"></i>
                                     Desvincular
                                 </button>
                             @endif
                             @if ((isset($task->pivot) && $task->pivot->permission == 'edit') || auth()->user()->id == $task->user_id)
                                 <button
-                                    class="border border-primary py-2 px-6 mx-1 text-primary inline-block rounded hover:bg-primary hover:text-blue-600 hover:border-blue-500"
+                                    class="border border-primary py-2 px-6 mx-1 text-primary inline-flex rounded hover:bg-primary hover:text-blue-600 hover:border-blue-500 items-center"
                                     wire:click="updateTask({{ $task }})">
+                                    <i class="fa-solid fa-pen mr-2"></i>
                                     Editar
                                 </button>
                                 <button
-                                    class="border border-primary py-2 px-6 mx-1 text-primary inline-block rounded hover:bg-primary hover:text-green-600 hover:border-green-500"
+                                    class="border border-primary py-2 px-6 mx-1 text-primary inline-flex rounded hover:bg-primary hover:text-green-600 hover:border-green-500"
                                     wire:click="toggleModalShared({{ $task }})">
+                                    <i class="fa-solid fa-share-nodes mr-2"></i>
                                     Compartir
                                 </button>
                                 <button
-                                    class="border border-primary py-2 px-6 mx-1 text-primary inline-block rounded hover:bg-primary hover:text-red-600 hover:border-red-500"
+                                    class="border border-primary py-2 px-6 mx-1 text-primary inline-flex rounded hover:bg-primary hover:text-red-600 hover:border-red-500"
                                     wire:click="deleteTask({{ $task }})"
                                     wire:confirm="Deseas eliminar la tarea?">
+                                    <i class="fa-solid fa-trash mr-2"></i>
                                     Eliminar
                                 </button>
                         </div>
@@ -172,9 +176,7 @@
                                         <option value="edit">Editar</option>
                                         <option value="delete">Eliminar</option>
                                     </select>
-
                                 </div>
-
                             </form>
                     </div>
                     <!--footer-->
