@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Mail\SharedTask;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class TaskComponent extends Component
@@ -88,6 +90,10 @@ class TaskComponent extends Component
         $user->sharedTask()->attach($task->id, ['permission' => $this->permission]);        
         $this->geTasks();
         $this->modalShared = false;
+        ///Enviar correos de notificación
+        Mail::to($user)->send(new SharedTask($task, auth()->user()));
+        /// Colas de trabajo
+        // Mail::to($user)->queue(new SharedTask($task, auth()->user()));
     }
 
     public function unSharedTask(Task $task)
